@@ -1,0 +1,54 @@
+import requests
+import random
+
+class PiNetworkWallet:
+    def __init__(self, wallet_address, balance):
+        self.wallet_address = wallet_address
+        self.balance = balance
+
+    def send_coins(self, amount, recipient_wallet):
+        if self.balance >= amount:
+            self.balance -= amount
+            recipient_wallet.balance += amount
+            return True
+        return False
+
+class ExchangeAPI:
+    def __init__(self, api_url):
+        self.api_url = api_url
+
+    def get_exchange_rate(self, coin_symbol):
+        # Simulasi mendapatkan harga dari API exchange
+        return random.uniform(0.5, 1.5)  # Simulasi harga
+
+    def convert_to_fiat(self, amount, rate):
+        return amount * rate
+
+# Simulasi Transaksi
+def main():
+    # Simulasi wallet Pi Network
+    user_wallet = PiNetworkWallet(wallet_address="PiUserWallet123", balance=100)
+    exchange_wallet = PiNetworkWallet(wallet_address="ExchangeWallet456", balance=5000)
+
+    # Simulasi Exchange
+    exchange = ExchangeAPI(api_url="https://api.exchange.com")
+
+    # Harga koin Pi dari exchange
+    pi_rate = exchange.get_exchange_rate("PI")
+    print(f"Harga PI: {pi_rate} USD")
+
+    # Pengguna mengirim 10 PI ke exchange
+    amount_to_send = 10
+    if user_wallet.send_coins(amount_to_send, exchange_wallet):
+        print(f"{amount_to_send} PI berhasil dikirim ke bursa.")
+        fiat_value = exchange.convert_to_fiat(amount_to_send, pi_rate)
+        print(f"Jumlah FIAT yang diterima: {fiat_value} USD")
+    else:
+        print("Saldo tidak mencukupi.")
+
+    # Tampilkan saldo akhir
+    print(f"Saldo user: {user_wallet.balance} PI")
+    print(f"Saldo exchange: {exchange_wallet.balance} PI")
+
+if __name__ == "__main__":
+    main()
