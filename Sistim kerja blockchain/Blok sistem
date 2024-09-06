@@ -1,0 +1,63 @@
+import hashlib
+import time
+
+# Kelas untuk mendefinisikan satu blok pada Blockchain
+class Block:
+    def __init__(self, index, previous_hash, timestamp, data, hash):
+        self.index = index
+        self.previous_hash = previous_hash
+        self.timestamp = timestamp
+        self.data = data
+        self.hash = hash
+
+# Fungsi untuk membuat hash dari blok
+def calculate_hash(index, previous_hash, timestamp, data):
+    value = str(index) + str(previous_hash) + str(timestamp) + str(data)
+    return hashlib.sha256(value.encode()).hexdigest()
+
+# Fungsi untuk membuat blok genesis (blok pertama)
+def create_genesis_block():
+    timestamp = time.time()
+    return Block(0, "0", timestamp, "Genesis Block", calculate_hash(0, "0", timestamp, "Genesis Block"))
+
+# Fungsi untuk membuat blok baru berdasarkan blok sebelumnya
+def create_new_block(previous_block, data):
+    index = previous_block.index + 1
+    timestamp = time.time()
+    hash_value = calculate_hash(index, previous_block.hash, timestamp, data)
+    return Block(index, previous_block.hash, timestamp, data, hash_value)
+
+# Kelas untuk menyimpan seluruh blockchain
+class Blockchain:
+    def __init__(self):
+        self.chain = [create_genesis_block()]
+
+    # Mendapatkan blok terakhir dari chain
+    def get_latest_block(self):
+        return self.chain[-1]
+
+    # Menambahkan blok baru ke dalam chain
+    def add_block(self, data):
+        previous_block = self.get_latest_block()
+        new_block = create_new_block(previous_block, data)
+        self.chain.append(new_block)
+
+    # Menampilkan blockchain
+    def display_chain(self):
+        for block in self.chain:
+            print(f"Index: {block.index}")
+            print(f"Previous Hash: {block.previous_hash}")
+            print(f"Timestamp: {time.ctime(block.timestamp)}")
+            print(f"Data: {block.data}")
+            print(f"Hash: {block.hash}\n")
+
+# Simulasi Blockchain
+blockchain = Blockchain()
+
+# Menambahkan blok baru
+blockchain.add_block("Transaksi 1: 10 BTC dari Alice ke Bob")
+blockchain.add_block("Transaksi 2: 5 BTC dari Bob ke Charlie")
+blockchain.add_block("Transaksi 3: 3 BTC dari Alice ke Charlie")
+
+# Tampilkan blockchain
+blockchain.display_chain()
