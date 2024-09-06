@@ -1,0 +1,56 @@
+import pandas as pd
+import pyinputplus as pyip
+import cv2
+
+# Fungsi untuk mengambil data pengguna
+def input_customer_data():
+    print("===== Formulir KYC =====")
+    name = pyip.inputStr(prompt="Nama lengkap: ")
+    id_number = pyip.inputStr(prompt="Nomor Identitas (KTP/SIM/Paspor): ")
+    dob = pyip.inputDate(prompt="Tanggal lahir (YYYY-MM-DD): ", formats=["%Y-%m-%d"])
+    phone = pyip.inputNum(prompt="Nomor telepon: ")
+
+    return {
+        "Nama Lengkap": name,
+        "Nomor Identitas": id_number,
+        "Tanggal Lahir": dob,
+        "Nomor Telepon": phone
+    }
+
+# Fungsi untuk mengambil dan menyimpan foto verifikasi
+def capture_photo(id_number):
+    cam = cv2.VideoCapture(0)
+    cv2.namedWindow("Ambil Foto")
+
+    while True:
+        ret, frame = cam.read()
+        if not ret:
+            print("Gagal mengambil gambar")
+            break
+        cv2.imshow("Ambil Foto", frame)
+
+        if cv2.waitKey(1) & 0xFF == ord('s'):  # Tekan 's' untuk menyimpan foto
+            photo_path = f"{id_number}.png"
+            cv2.imwrite(photo_path, frame)
+            print(f"Foto disimpan sebagai {photo_path}")
+            break
+
+    cam.release()
+    cv2.destroyAllWindows()
+
+# Fungsi utama untuk menjalankan KYC
+def run_kyc():
+    customer_data = input_customer_data()
+    
+    # Menyimpan data ke dalam DataFrame (untuk keperluan penyimpanan lebih lanjut)
+    df = pd.DataFrame([customer_data])
+
+    # Ambil foto verifikasi (opsional)
+    capture_photo(customer_data["Nomor Identitas"])
+
+    # Simpan data pengguna dalam file CSV
+    df.to_csv('kyc_data.csv', mode='a', header=False, index=False)
+    print("Data KYC berhasil disimpan.")
+
+if __name__ == "__main__":
+    run_kyc()
