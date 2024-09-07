@@ -1,0 +1,26 @@
+from web3 import Web3
+
+# Koneksi ke node blockchain (misalnya Infura atau node lokal)
+infura_url = "https://mainnet.infura.io/v3/YOUR_INFURA_PROJECT_ID"
+web3 = Web3(Web3.HTTPProvider(infura_url))
+
+# Periksa koneksi ke jaringan
+if web3.isConnected():
+    print("Terkoneksi ke jaringan Ethereum")
+else:
+    print("Gagal terkoneksi ke jaringan Ethereum")
+
+# Mendapatkan block terakhir
+block_number = web3.eth.block_number
+print(f"Block terakhir: {block_number}")
+
+# Mendapatkan informasi node peers
+def get_peers():
+    peers = web3.geth.admin.peers()
+    return peers
+
+# Menampilkan informasi peers (node lain)
+peers_info = get_peers()
+print("Daftar Peers:")
+for peer in peers_info:
+    print(f"ID: {peer['id']}, Versi: {peer['version']}, Negara: {peer['network']['remoteAddress']}")
