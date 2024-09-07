@@ -1,0 +1,27 @@
+import subprocess
+import psutil
+import time
+
+# Fungsi untuk mengecek apakah node (misalnya geth) sedang berjalan
+def is_node_running(process_name="geth"):
+    for process in psutil.process_iter(['name']):
+        if process.info['name'] == process_name:
+            return True
+    return False
+
+# Fungsi untuk menjalankan node jika tidak berjalan
+def start_node():
+    print("Memulai node...")
+    subprocess.Popen(['geth', '--syncmode', 'fast', '--http', '--http.addr', '0.0.0.0', '--http.port', '8545'])
+    print("Node dimulai.")
+
+# Loop pemeliharaan node (cek setiap 60 detik)
+while True:
+    if not is_node_running():
+        print("Node tidak berjalan, mencoba memulai ulang...")
+        start_node()
+    else:
+        print("Node berjalan dengan baik.")
+    
+    # Tunggu 60 detik sebelum pengecekan berikutnya
+    time.sleep(60)
