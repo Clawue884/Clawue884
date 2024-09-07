@@ -1,0 +1,31 @@
+const express = require('express');
+const Web3 = require('web3');
+require('dotenv').config();
+
+const app = express();
+const port = 3000;
+
+// Setup Web3
+const web3 = new Web3(new Web3.providers.HttpProvider(process.env.WEB3_PROVIDER));
+
+// Example contract interaction
+const contractAddress = process.env.CONTRACT_ADDRESS;
+const contractABI = [
+    // Add your contract ABI here
+];
+const contract = new web3.eth.Contract(contractABI, contractAddress);
+
+// Web2 endpoint to interact with Web3
+app.get('/balance/:address', async (req, res) => {
+    const address = req.params.address;
+    try {
+        const balance = await web3.eth.getBalance(address);
+        res.send({ balance: web3.utils.fromWei(balance, 'ether') });
+    } catch (error) {
+        res.status(500).send({ error: 'Error fetching balance' });
+    }
+});
+
+app.listen(port, () => {
+    console.log(`Server running on http://localhost:${port}`);
+});
