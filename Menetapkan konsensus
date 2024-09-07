@@ -1,0 +1,54 @@
+import random
+
+class Node:
+    def __init__(self, id):
+        self.id = id
+        self.is_leader = False
+        self.agree = False
+
+    def propose(self, proposal):
+        # Jika node adalah leader, dia akan mengajukan proposal
+        if self.is_leader:
+            print(f"Node {self.id} proposes: {proposal}")
+            return proposal
+        return None
+
+    def vote(self, proposal):
+        # Node lain akan memberikan suara berdasarkan beberapa aturan
+        # Di sini kita membuatnya secara acak
+        self.agree = random.choice([True, False])
+        print(f"Node {self.id} votes: {'Agree' if self.agree else 'Disagree'}")
+        return self.agree
+
+class BlockchainNetwork:
+    def __init__(self, num_nodes):
+        self.nodes = [Node(i) for i in range(num_nodes)]
+        self.leader = random.choice(self.nodes)
+        self.leader.is_leader = True
+        print(f"Node {self.leader.id} is selected as the leader.")
+
+    def reach_consensus(self, proposal):
+        print("\nStarting consensus process...\n")
+        # Pemimpin mengajukan proposal
+        leader_proposal = self.leader.propose(proposal)
+        
+        if leader_proposal:
+            votes = []
+            # Semua node memberikan suara
+            for node in self.nodes:
+                vote = node.vote(leader_proposal)
+                votes.append(vote)
+            
+            # Hitung apakah konsensus tercapai (lebih dari 50% setuju)
+            agreement_ratio = sum(votes) / len(votes)
+            if agreement_ratio > 0.5:
+                print("\nConsensus achieved! Majority agrees.")
+            else:
+                print("\nConsensus not achieved. No majority agreement.")
+        else:
+            print("No leader proposal available.")
+
+# Simulasi konsensus dengan 5 node
+if __name__ == "__main__":
+    network = BlockchainNetwork(num_nodes=5)
+    network.reach_consensus("Add block 101")
