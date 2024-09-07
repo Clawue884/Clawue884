@@ -1,0 +1,63 @@
+import React, { useState } from 'react';
+import { ethers } from 'ethers';
+import './App.css';
+
+function App() {
+  const [provider, setProvider] = useState(null);
+  const [contract, setContract] = useState(null);
+  const [account, setAccount] = useState(null);
+
+  const contractAddress = "ALAMAT_KONTRAK_ANDA"; // Ganti dengan alamat kontrak Anda
+  const abi = [ /* Masukkan ABI kontrak Anda di sini */ ];
+
+  const connectWallet = async () => {
+    if (window.ethereum) {
+      try {
+        const provider = new ethers.providers.Web3Provider(window.ethereum);
+        setProvider(provider);
+        
+        await window.ethereum.request({ method: 'eth_requestAccounts' });
+        const signer = provider.getSigner();
+        const address = await signer.getAddress();
+        setAccount(address);
+        
+        const contract = new ethers.Contract(contractAddress, abi, signer);
+        setContract(contract);
+      } catch (error) {
+        console.error(error);
+      }
+    } else {
+      alert("Please install MetaMask!");
+    }
+  };
+
+  const transferTokens = async (recipient, amount) => {
+    if (contract) {
+      try {
+        const tx = await contract.transfer(recipient, ethers.utils.parseEther(amount));
+        await tx.wait();
+        alert("Transfer successful!");
+      } catch (error) {
+        console.error(error);
+      }
+    }
+  };
+
+  return (
+    <div className="App">
+      <h1>My dApp</h1>
+      {account ? (
+        <>
+          <p>Connected as: {account}</p>
+          <button onClick={() => transferTokens("ALAMAT_PENERIMA", "1")}>
+            Transfer 1 Token
+          </button>
+        </>
+      ) : (
+        <button onClick={connectWallet}>Connect Wallet</button>
+      )}
+    </div>
+  );
+}
+
+export default App;
