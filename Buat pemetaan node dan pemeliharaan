@@ -1,0 +1,22 @@
+import networkx as nx
+import matplotlib.pyplot as plt
+
+# Inisialisasi graf jaringan
+G = nx.Graph()
+
+# Menambahkan node (representasi node blockchain)
+nodes = ['Node1', 'Node2', 'Node3', 'Node4', 'Node5']
+G.add_nodes_from(nodes)
+
+# Menambahkan koneksi antar node (representasi koneksi di blockchain)
+edges = [('Node1', 'Node2'), ('Node1', 'Node3'), 
+         ('Node2', 'Node4'), ('Node3', 'Node5'),
+         ('Node4', 'Node5')]
+
+G.add_edges_from(edges)
+
+# Visualisasi jaringan blockchain
+plt.figure(figsize=(8,6))
+nx.draw(G, with_labels=True, node_color='lightblue', font_weight='bold', node_size=3000)
+plt.title('Blockchain Node Network')
+plt.show()
