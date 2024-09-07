@@ -1,0 +1,45 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract CrossChainBridge {
+    // Struct untuk menyimpan detail transaksi antar-chain
+    struct Transfer {
+        address sender;
+        address receiver;
+        uint256 amount;
+        bool completed;
+    }
+
+    // Event untuk mentrigger transfer ke chain lain
+    event TransferInitiated(uint256 indexed transferId, address indexed sender, address indexed receiver, uint256 amount);
+
+    // Mapping untuk menyimpan semua transfer
+    mapping(uint256 => Transfer) public transfers;
+    uint256 public nextTransferId;
+
+    // Fungsi untuk memulai transfer
+    function initiateTransfer(address receiver, uint256 amount) public payable {
+        require(msg.value == amount, "Amount mismatch with sent value");
+
+        // Simpan transaksi ke dalam struct
+        transfers[nextTransferId] = Transfer({
+            sender: msg.sender,
+            receiver: receiver,
+            amount: amount,
+            completed: false
+        });
+
+        // Emit event untuk chain lain mendeteksi
+        emit TransferInitiated(nextTransferId, msg.sender, receiver, amount);
+        nextTransferId++;
+    }
+
+    // Fungsi untuk menyelesaikan transfer, dipanggil oleh bridge setelah verifikasi
+    function completeTransfer(uint256 transferId) public {
+        Transfer storage transfer = transfers[transferId];
+        require(!transfer.completed, "Transfer already completed");
+
+        transfer.completed = true;
+        payable(transfer.receiver).transfer(transfer.amount);
+    }
+}
