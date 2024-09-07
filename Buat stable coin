@@ -1,0 +1,54 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract StableCoin {
+    string public name = "StableCoin";
+    string public symbol = "STBL";
+    uint8 public decimals = 18;
+    uint256 public totalSupply;
+    address public owner;
+    
+    // Mapping untuk mencatat saldo setiap alamat
+    mapping(address => uint256) public balanceOf;
+
+    // Event untuk mentransfer koin
+    event Transfer(address indexed from, address indexed to, uint256 value);
+
+    // Modifier untuk membatasi akses ke pemilik kontrak
+    modifier onlyOwner() {
+        require(msg.sender == owner, "Hanya pemilik kontrak yang bisa melakukan ini.");
+        _;
+    }
+
+    // Constructor untuk menginisialisasi kontrak
+    constructor(uint256 _initialSupply) {
+        owner = msg.sender;
+        totalSupply = _initialSupply * (10 ** uint256(decimals));
+        balanceOf[owner] = totalSupply;
+    }
+
+    // Fungsi untuk mentransfer token
+    function transfer(address _to, uint256 _value) public returns (bool success) {
+        require(_to != address(0), "Alamat tidak valid.");
+        require(balanceOf[msg.sender] >= _value, "Saldo tidak mencukupi.");
+
+        balanceOf[msg.sender] -= _value;
+        balanceOf[_to] += _value;
+
+        emit Transfer(msg.sender, _to, _value);
+        return true;
+    }
+
+    // Fungsi untuk mencetak (mint) koin baru (hanya pemilik kontrak)
+    function mint(uint256 _amount) public onlyOwner {
+        totalSupply += _amount * (10 ** uint256(decimals));
+        balanceOf[owner] += _amount * (10 ** uint256(decimals));
+    }
+
+    // Fungsi untuk membakar (burn) koin (hanya pemilik kontrak)
+    function burn(uint256 _amount) public onlyOwner {
+        require(balanceOf[owner] >= _amount * (10 ** uint256(decimals)), "Saldo tidak mencukupi untuk dibakar.");
+        totalSupply -= _amount * (10 ** uint256(decimals));
+        balanceOf[owner] -= _amount * (10 ** uint256(decimals));
+    }
+}
