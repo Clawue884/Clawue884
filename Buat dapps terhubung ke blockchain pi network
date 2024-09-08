@@ -1,0 +1,46 @@
+import { useState } from 'react';
+import { ethers } from 'ethers';
+
+// Ganti dengan alamat kontrak pintar di Pi Network (jika tersedia)
+const contractAddress = 'YOUR_CONTRACT_ADDRESS';
+const abi = [
+  // Tambahkan ABI dari kontrak pintar
+];
+
+function App() {
+  const [data, setData] = useState(null);
+  const [newData, setNewData] = useState("");
+
+  async function fetchData() {
+    // Menghubungkan ke blockchain Pi Network (sesuaikan jika SDK tersedia)
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const contract = new ethers.Contract(contractAddress, abi, provider);
+    const storedData = await contract.get();
+    setData(storedData.toString());
+  }
+
+  async function updateData() {
+    const provider = new ethers.providers.Web3Provider(window.ethereum);
+    const signer = provider.getSigner();
+    const contract = new ethers.Contract(contractAddress, abi, signer);
+    await contract.set(newData);
+    fetchData();
+  }
+
+  return (
+    <div>
+      <h1>Simple Pi Network DApp</h1>
+      <button onClick={fetchData}>Fetch Data</button>
+      <p>Stored Data: {data}</p>
+
+      <input
+        type="text"
+        value={newData}
+        onChange={(e) => setNewData(e.target.value)}
+      />
+      <button onClick={updateData}>Update Data</button>
+    </div>
+  );
+}
+
+export default App;
