@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Web 3.0 Example</title>
+    <script src="https://cdn.jsdelivr.net/npm/web3@latest/dist/web3.min.js"></script>
+</head>
+<body>
+    <h1>Web 3.0 Ethereum Interaction</h1>
+    <button id="connectWallet">Connect Wallet</button>
+    <p id="account"></p>
+
+    <script>
+        // Inisialisasi Web3
+        const web3 = new Web3(Web3.givenProvider || "http://localhost:8545");
+
+        // Fungsi untuk menghubungkan dompet (Metamask)
+        async function connectWallet() {
+            if (window.ethereum) {
+                try {
+                    // Meminta akses ke akun pengguna
+                    const accounts = await ethereum.request({ method: 'eth_requestAccounts' });
+                    const account = accounts[0];
+                    document.getElementById('account').innerText = `Connected account: ${account}`;
+                } catch (error) {
+                    console.error("Error connecting to wallet", error);
+                }
+            } else {
+                alert("Please install MetaMask to interact with this page");
+            }
+        }
+
+        // Event listener untuk tombol connect wallet
+        document.getElementById('connectWallet').addEventListener('click', connectWallet);
+    </script>
+</body>
+</html>
