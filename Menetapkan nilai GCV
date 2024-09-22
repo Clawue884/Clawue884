@@ -1,0 +1,23 @@
+# Asumsi data harga Pi dalam USD
+pi_price_in_usd = 1.0  # Gantilah dengan harga Pi yang aktual jika tersedia
+
+# Harga GCV yang diinginkan
+gcv_price = 314.159  # Harga GCV yang diinginkan dalam USD
+
+# Menghitung jumlah Pi yang dibutuhkan untuk mencapai GCV
+pi_needed = gcv_price / pi_price_in_usd
+
+# Output hasil perhitungan
+print(f"Untuk mencapai harga GCV ${gcv_price}, dibutuhkan sekitar {pi_needed} Pi.")
+
+# Asumsi data harga Pi dalam USD
+pi_price_in_usd = 1.0  # Gantilah dengan harga Pi yang aktual jika tersedia
+
+# Harga GCV yang diinginkan
+gcv_price = 314.159  # Harga GCV yang diinginkan dalam USD
+
+# Menghitung jumlah Pi yang dibutuhkan untuk mencapai GCV
+pi_needed = gcv_price / pi_price_in_usd
+
+# Output hasil perhitungan
+print(f"Untuk mencapai harga GCV ${gcv_price}, dibutuhkan sekitar {pi_needed} Pi.")
