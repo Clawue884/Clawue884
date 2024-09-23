@@ -1,0 +1,60 @@
+# DApp Project
+
+## Deskripsi
+Proyek ini adalah sebuah Decentralized Application (DApp) yang dibangun di atas jaringan blockchain. Aplikasi ini menggunakan **smart contracts** yang di-deploy di Ethereum blockchain (atau jaringan blockchain lain yang relevan). 
+
+DApp ini memungkinkan pengguna untuk [tulis fitur utama dari aplikasi, misalnya: berinteraksi dengan kontrak pintar, melakukan transaksi, dll].
+
+## Fitur
+- [Fitur 1] - Deskripsi fitur 1
+- [Fitur 2] - Deskripsi fitur 2
+- [Fitur 3] - Deskripsi fitur 3
+
+## Prasyarat
+Sebelum menjalankan aplikasi ini, pastikan Anda telah menginstal perangkat lunak berikut:
+- [Node.js](https://nodejs.org/) versi `xx.x.x` atau lebih baru
+- [Truffle](https://www.trufflesuite.com/truffle) atau [Hardhat](https://hardhat.org/)
+- [Ganache](https://trufflesuite.com/ganache/) (untuk pengujian lokal)
+- [Metamask](https://metamask.io/) (untuk berinteraksi dengan aplikasi melalui browser)
+- [Solidity](https://soliditylang.org/) versi `x.x.x`
+
+## Instalasi
+1. Clone repository ini:
+    ```bash
+    git clone https://github.com/username/repo-name.git
+    ```
+2. Masuk ke direktori proyek:
+    ```bash
+    cd repo-name
+    ```
+3. Install dependencies:
+    ```bash
+    npm install
+    ```
+
+## Deployment Smart Contract
+1. Ubah ke direktori `contracts` dan pastikan Anda sudah menulis kontrak pintar di Solidity.
+2. Jalankan test jaringan lokal dengan Ganache:
+    ```bash
+    ganache-cli
+    ```
+3. Compile smart contract:
+    ```bash
+    truffle compile
+    ```
+4. Deploy smart contract ke jaringan lokal:
+    ```bash
+    truffle migrate --network development
+    ```
+
+## Menjalankan Aplikasi
+1. Setelah kontrak berhasil di-deploy, jalankan server frontend:
+    ```bash
+    npm run start
+    ```
+2. Buka browser dan kunjungi `http://localhost:3000`.
+
+## Testing
+Untuk menjalankan testing, gunakan perintah berikut:
+```bash
+truffle test
