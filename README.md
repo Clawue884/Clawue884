@@ -1,11 +1,11 @@
-- 👋 Hi, I’m @dapur aset
+- 👋 Hi, I’m @dapur aset(clawue)
 - 👀 I’m interested in ...pengembangan blockchain
 - 🌱 I’m currently learning ...
 - 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me ...
 - 😄 Pronouns: ...
 - ⚡ Fun fact: ..
-Landing dan Borrowing Platform:memingkinkan pengguna meminjam atau meminjamkan aset tanpa memerlukan lembaga perantara
+Landing dan Borrowing Platform:memungkinkan pengguna meminjam atau meminjamkan aset tanpa memerlukan lembaga perantara
 // SPDX-License-Identifier: MIT
 pragma solidity ^0.8.0;
 
