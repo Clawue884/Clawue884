@@ -1,0 +1,27 @@
+// SPDX-License-Identifier: MIT
+pragma solidity ^0.8.0;
+
+contract PhoneVerification {
+    struct PhoneNumber {
+        string number;
+        bool isVerified;
+    }
+    
+    mapping(address => PhoneNumber) public phoneNumbers;
+    
+    event PhoneVerified(address indexed user, string number);
+    
+    function registerPhoneNumber(string memory _number) public {
+        phoneNumbers[msg.sender] = PhoneNumber(_number, false);
+    }
+    
+    function verifyPhoneNumber() public {
+        require(bytes(phoneNumbers[msg.sender].number).length > 0, "No phone number registered");
+        phoneNumbers[msg.sender].isVerified = true;
+        emit PhoneVerified(msg.sender, phoneNumbers[msg.sender].number);
+    }
+    
+    function getPhoneNumberStatus(address _user) public view returns (bool) {
+        return phoneNumbers[_user].isVerified;
+    }
+}
