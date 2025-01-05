@@ -5,3 +5,4 @@
 - 📫 How to reach me ...
   iwak01bogo@gmail.com
 ![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Cakar884&show_icons=true&theme=dark)
+![GitHub Metrics](https://path.to.generated.image.svg)
