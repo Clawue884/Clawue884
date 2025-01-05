@@ -4,4 +4,5 @@
 - 💞️ I’m looking to collaborate on ...
 - 📫 How to reach me ...
   iwak01bogo@gmail.com
-curl -H "Authorization: token YOUR_GITHUB_TOKEN" https://api.github.com/users/USERNAME
+curl -H "Authorization: token YOUR_GITHUB_TOKEN" https://api.github.com/users/Cakar884
+![GitHub Stats](https://github-readme-stats.vercel.app/api?username=Cakar884&show_icons=true&theme=dark)
