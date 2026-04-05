@@ -1,64 +1,89 @@
-# 👋 Hi, I'm Clawue (Kapten Boneng)
+⚡ Clawue (Kapten Boneng)
 
-🚀 **Blockchain Developer | AI Systems Architect | Open Source Researcher**
-
-Kami lahir secara organik dan berkembang secara organik.  
-Tidak ada bisnis dan kapitalisme dibalik hubungan kita.
+Architect of Decentralized Systems • AI-Driven Infrastructure • Protocol Engineering
 
 ---
 
-## 🌍 About Me
+🧠 Identity
 
-- 🔗 Passionate about **Blockchain Infrastructure**
-- 🤖 Exploring **AI-driven decentralized systems**
-- 🧠 Researching **Economic Protocols & Web3 Governance**
-- 🌱 Building experimental systems for the **Pi ecosystem**
+I design and build autonomous systems at the intersection of:
 
-📍 Location: Cilacap, Jawa Tengah, Indonesia
+- Distributed Networks
+- Artificial Intelligence
+- Economic Protocols
+- Trust-Minimized Architectures
 
----
-
-## 🧠 Current Focus
-
-- AI-assisted blockchain infrastructure
-- Decentralized economic simulation
-- Advanced smart contract architecture
-- Cross-chain ecosystems
+I don't just write code — I engineer systems that evolve.
 
 ---
 
-## ⚙️ Tech Stack
+🧬 Core Domains
 
-```text
+- 🔗 Blockchain Protocol Design
+- 🤖 AI-Augmented Systems
+- 🌐 Distributed Infrastructure
+- 💰 Decentralized Finance (DeFi)
+- ⚙️ Autonomous Economic Models
+
+---
+
+🚀 Current Work
+
+- Building AI-integrated blockchain infrastructure
+- Designing cross-chain execution layers
+- Developing self-regulating financial systems
+- Researching protocol-level governance models
+
+---
+
+⚙️ Tech Arsenal
+
 Languages
-Python | JavaScript | TypeScript | Move | C
+"Python" "TypeScript" "JavaScript" "Move" "C"
 
-Frameworks
-React | Node.js | Laravel | NestJS
+Systems & Frameworks
+"Node.js" "NestJS" "Laravel" "React"
 
-Technologies
-Blockchain | AI Systems | Distributed Systems | Web3
+Architecture Focus
+"Microservices" "Event-Driven Systems" "Distributed Consensus"
+"Smart Contracts" "On-chain / Off-chain Integration"
 
-🚀 Featured Projects
-🔗 Blockchain & Web3
-PiRC Research Lab
-Pi DEX Hybrid
-Native Smart Contract NSC Pi
-Sidra KYC AI
-📊 GitHub Statistics
-�
-�
-🏆 GitHub Achievements
-🦈 Pull Shark
-😅 YOLO
-🌐 Connect With Me
-🐦 Twitter
-https://x.com/clawue666⁠�
-💼 LinkedIn
-https://www.linkedin.com/in/clawue-bhineka-tunggal-ika-19b64832a⁠�
-🌍 Website
-https://clawue.com⁠�
-📧 Email
-iwak01bogo@gmail.com
-🔭 Philosophy
-“Innovation grows from open collaboration and decentralized knowledge.”
+---
+
+🔥 Selected Engineering Work
+
+- AI-powered blockchain modules
+- Cross-chain interoperability prototypes
+- Decentralized financial simulation engines
+- Smart contract systems (multi-chain)
+
+---
+
+📊 Signal
+
+"Stats" (https://github-readme-stats.vercel.app/api?username=Clawue884&show_icons=true&theme=radical)
+
+---
+
+🌐 Engineering Principles
+
+- Systems > Features
+- Trust > Authority
+- Code > Narratives
+- Decentralization > Control
+
+---
+
+🤝 Contact
+
+- Twitter → https://x.com/clawue6666
+- LinkedIn → https://www.linkedin.com/in/clawue-bhineka-tunggal-ika-19b64832a/
+- Web → https://clawue.com
+- Email → iwak01bogol@gmail.com
+
+---
+
+⚡ Final Note
+
+«I’m not here to follow trends.
+I build the infrastructure that trends will run on.»
